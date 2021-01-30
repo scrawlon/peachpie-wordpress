@@ -1,0 +1,28 @@
+version: "3.3"
+
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+
+  wordpress:
+    container_name: peachpie-wordpress
+    depends_on:
+      - mysql
+    ports:
+      - "80:5004"
+    build: .
+    restart: always
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_USE_POLLING_FILE_WATCHER: 1
+volumes:
+  db_data: {}
