@@ -1,5 +1,16 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS base
+
+COPY ./peachpie-wordpress.sln /peachpie-wordpress/
+COPY ./Directory.Build.props /peachpie-wordpress/
+COPY ./global.json /peachpie-wordpress/
+COPY ./app/app.csproj /peachpie-wordpress/app/
+COPY ./MyContent/MyContent.msbuildproj /peachpie-wordpress/MyContent/
+
+CMD cd /peachpie-wordpress/app
+RUN dotnet restore /peachpie-wordpress/app/app.csproj
+
+FROM base AS build
 
 WORKDIR /peachpie-wordpress/app
 
-ENTRYPOINT dotnet restore && dotnet watch run  --no-restore
+ENTRYPOINT dotnet watch run  --no-restore
