@@ -18,9 +18,7 @@ services:
       - mysql
     ports:
       - "80:5004"
-    build:
-      context: .
-      dockerfile: ./app/Dockerfile
+    build: .
     volumes:
       - "./:/peachpie-wordpress"
     restart: always
