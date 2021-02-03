@@ -6,7 +6,6 @@ COPY ./global.json /peachpie-wordpress/
 COPY ./app/app.csproj /peachpie-wordpress/app/
 COPY ./MyContent/MyContent.msbuildproj /peachpie-wordpress/MyContent/
 
-CMD cd /peachpie-wordpress/app
 RUN dotnet restore /peachpie-wordpress/app/app.csproj
 
 FROM base AS build
