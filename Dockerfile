@@ -2,10 +2,10 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS base
 
 COPY . /peachpie-wordpress/
 
-WORKDIR /peachpie-wordpress/app
-
-RUN dotnet restore
+RUN dotnet restore /peachpie-wordpress/peachpie-wordpress.sln
 
 FROM base AS build
 
-ENTRYPOINT dotnet restore && dotnet watch run  --no-restore
+WORKDIR /peachpie-wordpress/app
+
+ENTRYPOINT dotnet watch run  --no-restore
