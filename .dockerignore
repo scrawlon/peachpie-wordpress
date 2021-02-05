@@ -1,3 +1,13 @@
-.git/**
-**/bin
-**/obj
+Dockerfile*
+docker-compose*
+.dockerignore
+.git
+.gitignore
+.env
+*/bin
+*/obj
+/obj
+/bin
+README.md
+LICENSE
+.vscode
